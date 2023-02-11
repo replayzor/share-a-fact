@@ -1,23 +1,28 @@
+import { useState } from "react";
+
+// components
+import CategoryFilter from "./components/CategoryFilter";
+import NewFactForm from "./components/NewFactForm";
+import FactList from "./components/FacList";
+import Header from "./components/Header";
+
 function App() {
+	const [showForm, setShowForm] = useState(false);
+
+	const clickFormHandler = () => {
+		setShowForm((show) => !show);
+	};
+
 	return (
-		<header className="flex items-center justify-between mb-10">
-			<div className="flex items-center gap-4">
-				<img
-					className="w-[68px] h-[68px]"
-					src="logo.png"
-					alt="Share A Fact"
-					height="68"
-					width="68px"
-				/>
+		<>
+			<Header onClickForm={clickFormHandler} showForm={showForm} />
+			{showForm ? <NewFactForm /> : null}
 
-				<h1 className="text-4xl font-bold uppercase font-Coiny leading-tight mt-6">
-					Today I Learned
-				</h1>
-			</div>
-
-			{/* Need to convert to tailwindcss */}
-			<button className="btn btn-large btn-open">Share a fact</button>
-		</header>
+			<main className="main">
+				<CategoryFilter />
+				<FactList />
+			</main>
+		</>
 	);
 }
 
