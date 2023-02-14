@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// supabase
+import supabase from "./supabase";
 
 // components
 import CategoryFilter from "./components/CategoryFilter";
@@ -42,7 +45,16 @@ const initialFacts = [
 
 function App() {
 	const [showForm, setShowForm] = useState(false);
-	const [facts, showFacts] = useState(initialFacts);
+	const [facts, setFacts] = useState([]);
+
+	useEffect(() => {
+		const getFacts = async () => {
+			const { data: facts, error } = await supabase.from("facts").select("*");
+			setFacts(facts);
+			console.log(facts, error);
+		};
+		getFacts();
+	}, []);
 
 	const clickFormHandler = () => {
 		setShowForm((show) => !show);
@@ -52,7 +64,7 @@ function App() {
 		<>
 			<Header onClickForm={clickFormHandler} showForm={showForm} />
 			{showForm ? (
-				<NewFactForm showFacts={showFacts} setShowForm={setShowForm} />
+				<NewFactForm setFacts={setFacts} setShowForm={setShowForm} />
 			) : null}
 
 			<main className="main">

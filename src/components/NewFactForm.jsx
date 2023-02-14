@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CATEGORIES from "../data";
 
-function NewFactForm({ showFacts, setShowForm }) {
+function NewFactForm({ setFacts, setShowForm }) {
 	const [text, setText] = useState("");
 	const [source, setSource] = useState("http://example.com");
 	const [category, setCategory] = useState("");
@@ -38,7 +38,7 @@ function NewFactForm({ showFacts, setShowForm }) {
 				createdIn: new Date().getFullYear(),
 			};
 			// 4. Add the new fac to the UI: add the fact to state
-			showFacts((currentFacts) => [newFact, ...currentFacts]);
+			setFacts((currentFacts) => [newFact, ...currentFacts]);
 			// 5. Reset input fields
 			setText("");
 			setSource("");
