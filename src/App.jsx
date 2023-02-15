@@ -6,7 +6,7 @@ import supabase from "./supabase";
 // components
 import CategoryFilter from "./components/CategoryFilter";
 import NewFactForm from "./components/NewFactForm";
-import FactList from "./components/FacList";
+import FactList from "./components/FactList";
 import Header from "./components/Header";
 import Loading from "./components/Loading";
 
