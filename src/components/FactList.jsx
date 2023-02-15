@@ -3,7 +3,7 @@ import Fact from "./Fact";
 function FactList({ facts, setFacts }) {
 	if (facts.length === 0) {
 		return (
-			<p className="text-center uppercase text-4xl font-bold tracking-wide mt-6">
+			<p className="message">
 				No facts for this category yet! Create the first one ✌
 			</p>
 		);
